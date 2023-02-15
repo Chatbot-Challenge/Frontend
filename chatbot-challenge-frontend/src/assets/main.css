@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+body{
+    background-color: #60efff;
+    font-family: 'Open Sans', sans-serif;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size:     cover;                      /* <------ */
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+a, a:visited{
+  color: blue;
+}
+
+#app{
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.input_area{
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.input_area input[type=text] {
+  border: 2px solid black;
+  border-radius: 4px;
+  padding: 12px;
+  min-width: 400px;
+  max-width: 600px;
+  margin: 20px;
+}
+
+.input_area input[type=button] {
+  border: 2px solid black;
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.separator{
+  height:50px;
+  clear: both;
+}
+h1{
+  text-align: center;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.nav li{
+  list-style-type: none;
+  float: left;
+  margin: 0 20px 0 20px;
+}
+
+h2{
+  clear: both;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.rooms {
+  text-align: center;
+}
+
+.rooms a{
+  padding: 20px;
+  background-color: #55dfff;
+  border-radius: 12px;
+  margin: 20px;
+  display:inline-block;
+}
+
+.chat_bubble{
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+    width: 60%;
+    border-radius: 12px;
+    opacity: 0.85;
+}
+
+.bot{
+  float: left;
+}
+
+.user{
+  float: right;
+}
+
+.name{
+    color: gray;
+    margin-bottom:12px;
+}
+
+.close_room{
+  background-color: white;
+  padding: 10px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  opacity:0.5;
+}
+
+.close_room img{
+  width: 40px;
+}
+
+
+
