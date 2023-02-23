@@ -109,7 +109,7 @@ h2{
 .close_room{
   background-color: white;
   padding: 10px;
-  position: absolute;
+  position: fixed;
   top: 20px;
   right: 20px;
   opacity:0.5;
