@@ -1,76 +1,83 @@
 <script>
 import { config } from '../../config'
+import {v4 as uuidv4} from 'uuid';
 
 // show a single message
-function displayMessage(msg, sender) {
-  if (sender != "user" & sender != "bot") {
-    console.error("bad sender " + sender);
-  }
-
-  let div = $("<div>")
-    .addClass("chat_bubble")
-    .addClass(sender)
-    .appendTo($(".chat"))
-    .html(msg);
-
-  let name = "Game Master";
-  if (sender == "user") {
-    name = "You"
-  }
-  $("<div>")
-    .addClass("name")
-    .html(name)
-    .prependTo(div);
-}
-
 var isLoadingChatMessage = false;
 
-// send a message to rasa
-function sendMessage(that) {
-  let message = $(".messagebox").val();
-
-  if( message.trim() == "" ){
-    return;
-  }
-
-  if( isLoadingChatMessage ){
-    return;
-  }
-  isLoadingChatMessage = true;
-  let url = that.room["api-url"] + "/webhooks/rest/webhook";
-
-  displayMessage(message, "user");
-  let data = {
-    "sender": "test_user",
-    "message": message
-  };
-
-  $.ajax({
-    url: url,
-    type: 'POST',
-    data: JSON.stringify(data),
-    contentType: 'application/json; charset=utf-8',
-    dataType: 'json',
-    async: false,
-    success: function (result) {
-      isLoadingChatMessage = false;
-      $(".messagebox").val("");
-      for (var i = 0; i < result.length; i++) {
-        if (result[i]["text"] != "undefined") {
-          displayMessage(result[i]["text"], "bot");
-          window.scrollTo(0, document.body.scrollHeight);
-        }
-      }
-    },
-    error: function(result){
-      isLoadingChatMessage = false;
-      alert("error connecting to the server.");
-    }
-  });
-}
-
 export default {
+
+  methods: {
+
+   displayMessage(msg, sender) {
+      if (sender != "user" & sender != "bot") {
+        console.error("bad sender " + sender);
+      }
+
+      let div = $("<div>")
+        .addClass("chat_bubble")
+        .addClass(sender)
+        .appendTo($(".chat"))
+        .html(msg);
+
+      let name = "Game Master";
+      if (sender == "user") {
+        name = "You"
+      }
+      $("<div>")
+        .addClass("name")
+        .html(name)
+        .prependTo(div);
+    },
+    // send a message to rasa
+    sendMessage() {
+      let message = $(".messagebox").val();
+
+      if( message.trim() == "" ){
+        return;
+      }
+
+      if( isLoadingChatMessage ){
+        return;
+      }
+      isLoadingChatMessage = true;
+      let url = this.room["api-url"] + "/webhooks/rest/webhook";
+
+      this.displayMessage(message, "user");
+      let data = {
+        "sender": this.session_id,
+        "message": message
+      };
+
+      var that = this;
+      $.ajax({
+        url: url,
+        type: 'POST',
+        data: JSON.stringify(data),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        async: false,
+        success: function (result) {
+          isLoadingChatMessage = false;
+          $(".messagebox").val("");
+          for (var i = 0; i < result.length; i++) {
+            if (result[i]["text"] != "undefined") {
+              that.displayMessage(result[i]["text"], "bot");
+              window.scrollTo(0, document.body.scrollHeight);
+            }
+          }
+        },
+        error: function(result){
+          isLoadingChatMessage = false;
+          alert("error connecting to the server.");
+        }
+      });
+    },
+  },
+
   created() {
+    this.session_id = uuidv4();
+    
     this.room = null;
     for (var i = 0; i < config.rooms.length; i++) {
       if (config.rooms[i]["id"] == this.$route.params.roomId) {
@@ -89,19 +96,19 @@ export default {
     $(document).ready(function () {
 
       // display welcome message
-      displayMessage(that.room["welcome-message"], "bot");
+      that.displayMessage(that.room["welcome-message"], "bot");
 
       // listen to enter key on message input field
       $('.messagebox').keypress(function (e) {
         if (e.keyCode == 13) {
-          sendMessage(that);
+          that.sendMessage();
         }
       });
 
       // send button click function
       $(".send_button").click(function (e) {
         e.preventDefault();
-        sendMessage(that);
+        sendMessage();
       });
 
       $(".header").hide();
