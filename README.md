@@ -22,7 +22,8 @@ In our tests, Rasa was not compatible with Python 3.9, so we had to use 3.8.
 First install nodejs and npm: https://nodejs.org/en/download/
 
 ```
-cd chatbot-challenge-frontend
+git clone https://github.com/Chatbot-Challenge/Frontend.git
+cd Frontend/chatbot-challenge-frontend/
 npm install
 ```
 
