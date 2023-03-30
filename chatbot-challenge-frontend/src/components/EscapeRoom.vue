@@ -87,7 +87,8 @@ export default {
 
     if (this.room != null) {
       if (this.room["background-image"] != undefined) {
-        let path = "url(/public/background-images/" + this.room["background-image"] + ")";
+        //let path = require("/public/background-images/" + this.room["background-image"]);
+        let path = "url(/background-images/" + this.room["background-image"] + ")";
         $("body").css("background-image", path);
       }
     }
