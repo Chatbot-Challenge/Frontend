@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
 body{
-    background-color: #60efff;
+    background-image: url('/public/default-background.jpg');
     font-family: 'Open Sans', sans-serif;
     background-size: 100% auto;
     background-repeat: no-repeat;
@@ -12,6 +12,13 @@ body{
     width: 100%;
     height: 100%;
   }
+
+.content-box{
+  background-color: rgb(255, 255, 255, 0.8);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top:20px;
+}
 
 a, a:visited{
   color: blue;
@@ -78,8 +85,9 @@ h2{
 
 .rooms a{
   padding: 20px;
-  background-color: #55dfff;
+  background-color: white;
   border-radius: 12px;
+  border: 1px solid black;
   margin: 20px;
   display:inline-block;
 }
