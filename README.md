@@ -15,7 +15,7 @@ Please refer to the official Rasa documentation for installation instructions. W
 [https://rasa.com/docs/rasa/installation/installing-rasa-open-source/](https://rasa.com/docs/rasa/installation/installing-rasa-open-source/
 )
 
-Please use Python 3.8.10 to ensure compatibility with our server. Usually it makes sense to create a virtual environment for your python installation, such as [conda](https://www.anaconda.com/). In this way you can have multiple different Python environemnts in parallel that do not interfere with each other, in case you need Python for another project also.
+Please use Python 3.8.10 to ensure compatibility with our server. Usually it makes sense to create a virtual environment for your python installation, such as [Conda](https://www.anaconda.com/). In this way you can have multiple different Python environemnts in parallel that do not interfere with each other, in case you need Python for another project also.
 
 ### Install Frontend:
 
