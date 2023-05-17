@@ -4,22 +4,28 @@ config = {
     "name": "hello world",
     "rooms": [
         {
-            "name": "Under the sea",
+            "escape_room_name": "Under the sea",
+            "chatbot_name": "Neptun",
+            "user_name": "Erika Musterfrau",
+            "messagebox_caption": "Type here...",
+            "send_button_caption": "Swim",
+            "user_name": "Erika Musterfrau",
             "id": "under-the-sea",
             "background-image": "under-the-sea.jpg",
-            "api-url": "https://vm014.qu.tu-berlin.de/api5005",
+            "api_url": "https://vm014.qu.tu-berlin.de/api5005",
             "welcome-message": "You are under the sea."
         },
         {
-            "name": "House of horrors",
+            "escape_room_name": "House of horrors",
+            "chatbot_name": "Susie",
             "id": "house-of-horrors",
-            "api-url": "https://vm014.qu.tu-berlin.de/api5005",
+            "api_url": "https://vm014.qu.tu-berlin.de/api5005",
             "welcome-message": "You are in the horror house."
         },
         {
-            "name": "Jazz Club",
+            "escape_room_name": "Jazz Club",
             "id": "jazz-club",
-            "api-url": "https://vm014.qu.tu-berlin.de/api5005",
+            "api_url": "https://vm014.qu.tu-berlin.de/api5005",
             "welcome-message": "You are in the Jazz Club escape room.",
             "background-image": "jazzclub.png",
         }
