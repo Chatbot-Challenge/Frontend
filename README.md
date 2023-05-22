@@ -7,6 +7,14 @@ This repository contains code for the chatbot challenge platform. It contains th
 
 
 ## Installation
+Fixed Versions for bot:
+ * python `3.8.10`
+ * rasa `3.4.2`
+
+For local Frontend-test:
+ * node-js (v20.2.0 ), npm ( 9.6.6)
+ 
+ 
 
 ### Install Rasa:
 
