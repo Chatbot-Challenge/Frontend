@@ -4,7 +4,7 @@ This repository contains code for the chatbot challenge platform. It contains th
 
 * **chatbot-challenge-frontend** The frontend of the chatbot challenge.
 * **escape-rooms** The escape rooms which are Rasa agents. This folder contains the definitions of these dialog agents.
-* **docker** Docker files to start the system. This does not work currently.
+
 
 ## Installation
 
