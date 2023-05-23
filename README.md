@@ -84,7 +84,7 @@ rasa run actions
 * In `Frontend/chatbot-challenge-frontend/config`
 add a new room to the list of rooms :´
 * make sure that you use the same port as specified above (`rasa run -p 5005...`)
-```json
+```js
 config = {
     "name": "hello world",
     "rooms": [
