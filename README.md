@@ -127,10 +127,16 @@ chatbot-challenge-frontend/config.js contains the bot configuration. The configu
 }
 ```
 
-The fields are
+Here is a list of available configuration parameters:
 
-* name: The name that will be displayed on the landing page of the website.
-* id: The unique id of this bot. Must be URL safe, so best use only alpha numeric characters and hyphens.
-* background-image: An optional background image.
-* api-url: The URL of the Rasa server
-* welcome-message: The first message that will be displayed to the user.
+| Parameter | Description | Required | Example Value |
+|-----|-----|-----|-----|
+| api_url | URL of the Rasa HTTP API | required | https://vm014.qu.tu-berlin.de/api5005 | 
+| id | Unique ID of the escape room. Please derive this from your team name. | required | under-the-sea | 
+| escape_room_name | Name of the escape room | required | Under the sea | 
+| chatbot_name | Name of the chatbot that is displayed in the chat bubbles. | optional, default is "Game Master" | Neptun | 
+| user_name | Name of the user that is displayed in the chat bubbles | optional, default is "You"| Erika Musterfrau | 
+| messagebox_caption | Caption of the text input box in the chat window. | optional, default is "Type here what you want to do..." | Type here... | 
+| send_button_caption | Caption of the send button in the chat | optional, default="Do" | Swim | 
+| background-image | Name of the background image file in the folder public/background-images/. Please prefix with your id parameter to ensure that the filename is unique. | optional | under-the-sea.jpg | 
+| welcome-message | First message of the chatbot when the user starts the game | optional | You are under the sea." |
