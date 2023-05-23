@@ -4,6 +4,18 @@ config = {
     "name": "hello world",
     "rooms": [
         {
+            "escape_room_name": "Lokal Demo",
+            "chatbot_name": "local-bot",
+            "user_name": "Oha Oha Oha",
+            "messagebox_caption": "hmmm?...",
+            "send_button_caption": "oha?",
+            "user_name": "you",
+            "id": "lokal",
+            "background-image": "under-the-sea.jpg",
+            "api_url": "http://localhost:5004",
+            "welcome-message": "does it wörk?"
+        },
+        {
             "escape_room_name": "Under the sea",
             "chatbot_name": "Neptun",
             "user_name": "Erika Musterfrau",
