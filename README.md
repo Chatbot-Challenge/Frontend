@@ -96,7 +96,7 @@ config = {
             "send_button_caption": "oha?",
             "user_name": "you",
             "id": "lokal",
-            "background-image": "under-the-sea.jpg",
+            "background-image": "local-bot-background-image.jpg",
             "api_url": "http://localhost:5005",
             "welcome-message": "does it wörk?"
         },
@@ -121,7 +121,7 @@ chatbot-challenge-frontend/config.js contains the bot configuration. The configu
 {
     "name": "Under the sea",
     "id": "under-the-sea",
-    "background-image": "under-the-sea.jpg",
+    "background-image": "under-the-sea-background-image.jpg",
     "api-url": "http://localhost:5005",
     "welcome-message": "You are under the sea."
 }
@@ -131,6 +131,6 @@ The fields are
 
 * name: The name that will be displayed on the landing page of the website.
 * id: The unique id of this bot. Must be URL safe, so best use only alpha numeric characters and hyphens.
-* background-image: An optional background image
+* background-image: An optional background image.
 * api-url: The URL of the Rasa server
 * welcome-message: The first message that will be displayed to the user.

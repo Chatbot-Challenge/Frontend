@@ -11,8 +11,8 @@ config = {
             "send_button_caption": "oha?",
             "user_name": "you",
             "id": "lokal",
-            "background-image": "under-the-sea.jpg",
-            "api_url": "http://localhost:5004",
+            "background-image": "local-bot-background-image.jpg",
+            "api_url": "http://localhost:5005",
             "welcome-message": "does it wörk?"
         },
         {
@@ -23,7 +23,7 @@ config = {
             "send_button_caption": "Swim",
             "user_name": "Erika Musterfrau",
             "id": "under-the-sea",
-            "background-image": "under-the-sea.jpg",
+            "background-image": "under-the-sea-background-image.jpg",
             "api_url": "https://vm014.qu.tu-berlin.de/api5005",
             "welcome-message": "You are under the sea."
         },
