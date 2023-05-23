@@ -134,3 +134,35 @@ The fields are
 * background-image: An optional background image
 * api-url: The URL of the Rasa server
 * welcome-message: The first message that will be displayed to the user.
+
+
+## "Deployment" with git submodules
+for general info:  
+https://git-scm.com/book/en/v2/Git-Tools-Submodules
+#### What Teams should do
+
+#### what we have to do 
+
+* add student bots as new submodule in `escape-rooms` folder
+  ```sh
+  git submodule add https://github.com/Chatbot-Challenge/Rasa-Template  
+  ```
+* we can update new versions of the bot.
+  (new commit on `main` or `master` branch )
+
+  ```sh 
+  git submodule update --remote
+  ```
+
+* after cloning submodules have to be initialized
+  
+  ```sh
+  git submodule init
+  git submodule update
+  ```
+  
+  or clone with `recurse-submodules` option
+  
+  ```
+  git clone --recurse-submodules
+  ```
