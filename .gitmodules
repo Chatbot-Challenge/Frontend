@@ -1,0 +1,3 @@
+[submodule "escape-rooms/Rasa-Template"]
+	path = escape-rooms/Rasa-Template
+	url = https://github.com/Chatbot-Challenge/Rasa-Template
