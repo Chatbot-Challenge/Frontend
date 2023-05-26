@@ -140,3 +140,7 @@ Here is a list of available configuration parameters:
 | send_button_caption | Caption of the send button in the chat | optional, default="Do" | Swim | 
 | background-image | Name of the background image file in the folder public/background-images/. Please prefix with your id parameter to ensure that the filename is unique. | optional | under-the-sea.jpg | 
 | welcome-message | First message of the chatbot when the user starts the game | optional | You are under the sea." |
+
+## Online installation
+
+The chatbot challenge platform is installed live under [https://vm014.qu.tu-berlin.de](https://vm014.qu.tu-berlin.de/). The logfiles are accessible under https://vm014.qu.tu-berlin.de/logs . There is one log files for each escape room with the team number as filename.
