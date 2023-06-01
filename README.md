@@ -149,7 +149,9 @@ Here is a list of available configuration parameters:
 | messagebox_caption | Caption of the text input box in the chat window. | optional, default is "Type here what you want to do..." | Type here... | 
 | send_button_caption | Caption of the send button in the chat | optional, default="Do" | Swim | 
 | background-image | Name of the background image file in the folder public/background-images/. Please prefix with your id parameter to ensure that the filename is unique. | optional | under-the-sea.jpg | 
-| welcome-message | First message of the chatbot when the user starts the game | optional | You are under the sea." |
+| welcome-message | First message of the chatbot when the user starts the game | optional | You are under the sea. |
+| chatbot-avatar | Image file to an avatar of the chatbot. Should be a rectangular image. | optional | jazz_club_avatar1.jpg |
+| user-avatar | Image file to an avatar of the user. Should be a rectangular image. | optional | jazz_club_avatar2.jpg |
 
 ## Online installation
 

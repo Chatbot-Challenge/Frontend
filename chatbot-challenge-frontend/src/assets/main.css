@@ -127,5 +127,18 @@ h2{
   width: 40px;
 }
 
+.avatar{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
 
+.avatar-left{
+  float: left;
+  margin-right: 10px;
+}
 
+.avatar-right{
+  float: right;
+  margin-left: 10px;
+}

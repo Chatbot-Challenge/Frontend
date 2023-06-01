@@ -17,7 +17,7 @@ export default {
 
     let d = {
       "messagebox_caption": "Type here what you want to do...",
-      "send_button_caption": "Do"
+      "send_button_caption": "Do",
     }
     if( this.room["messagebox_caption"] != undefined ){
       d["messagebox_caption"] = this.room["messagebox_caption"];
@@ -48,11 +48,25 @@ export default {
         } else{
           name = "You";
         }
+        if( this.room["user-avatar"] != undefined){
+          let img = $("<img/>")
+            .attr("src", "/user-assets/" + this.room["user-avatar"])
+            .addClass("avatar")
+            .addClass("avatar-right")
+            .appendTo(div)
+        }
       } else {
         if( this.room["chatbot_name"] != undefined){
           name = this.room["chatbot_name"];
         } else{
           name = "Game Master";
+        }
+        if( this.room["chatbot-avatar"] != undefined){
+          let img = $("<img/>")
+            .attr("src", "/user-assets/" + this.room["chatbot-avatar"])
+            .addClass("avatar")
+            .addClass("avatar-left")
+            .appendTo(div)
         }
       }
       $("<div>")

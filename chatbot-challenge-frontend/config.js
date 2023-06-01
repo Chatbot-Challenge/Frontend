@@ -39,7 +39,9 @@ config = {
             "id": "jazz-club",
             "api_url": "https://vm014.qu.tu-berlin.de/api5005",
             "welcome-message": "You are in the Jazz Club escape room.",
-            "background-image": "jazzclub.png",
+            "background-image": "jazz-club-background-image.png",
+            "chatbot-avatar": "jazz_club_avatar1.jpg",
+            "user-avatar": "jazz_club_avatar2.jpg"
         }
     ]
 };
