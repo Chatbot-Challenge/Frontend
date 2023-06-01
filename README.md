@@ -5,6 +5,11 @@ This repository contains code for the chatbot challenge platform. It contains th
 * **chatbot-challenge-frontend** The frontend of the chatbot challenge.
 * **escape-rooms** The escape rooms which are Rasa agents. This folder contains the definitions of these dialog agents.
 
+# Preperation for Deployment:
+  * **see [deployment.md](./documentation/deployment.md) for more information about your preparations**
+
+
+
 
 ## Installation
 Fixed Versions for bot:
@@ -104,6 +109,8 @@ config = {
       ]
     };
 ``` 
+* **Please note** that configuring this file is only necessary for local testing.  
+  the deployment will use the config from your 
 ### Start the frontend
 
 ```
@@ -117,6 +124,8 @@ Open `http://localhost:5173/` in your web browser to see the user interface.
 
 chatbot-challenge-frontend/config.js contains the bot configuration. The configuration format is a JSON dictionary.
 
+
+example: 
 ```
 {
     "name": "Under the sea",
@@ -126,6 +135,7 @@ chatbot-challenge-frontend/config.js contains the bot configuration. The configu
     "welcome-message": "You are under the sea."
 }
 ```
+
 
 Here is a list of available configuration parameters:
 
