@@ -2,7 +2,7 @@
 In order that we can depoy your chatbot **you have to** commit your code into a **git repository** e.g. GitHub or GitLab.  
 
 ## Prepare Asset Folder
- 1. **create `chatbot_assets` folder in your Chatbot-Challenge-Project**
+ 1. **create `assets` folder in your Chatbot-Challenge-Project**
     * This folder contains the background-image
     * This folder contains the `config.json` file
     * If you need additional Python packages, you can add them to the `requirements.txt` file  
