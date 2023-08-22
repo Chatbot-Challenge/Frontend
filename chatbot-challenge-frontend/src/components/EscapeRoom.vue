@@ -25,6 +25,7 @@ export default {
     if( this.room["send_button_caption"] != undefined ){
       d["send_button_caption"] = this.room["send_button_caption"];
     }
+    d["is_escape_room"] = true;
     console.log(d);
     return d;
   },
