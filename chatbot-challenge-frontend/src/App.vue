@@ -9,11 +9,11 @@ import ListRooms from './components/ListRooms.vue'
   </div>
   <div class="wrapper" v-else>
     <div class="content-box">
-        <h1>Chatbot Challenge</h1>
+        <h1>Chatbots zur Stärkung der Demokratie</h1>
         
         <ul class="nav">
           <li>
-            <RouterLink to="/">Escape Rooms</RouterLink>
+            <RouterLink to="/">Chatbots</RouterLink>
           </li>
           <li>
             <RouterLink to="/about">&Uuml;ber uns</RouterLink>
