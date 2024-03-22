@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
 body{
-    background-image: url('/public/default-background.jpg');
+    background-image: url('/public/default-background.png');
     font-family: 'Open Sans', sans-serif;
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size:     cover;                      /* <------ */
+    background-size:     cover;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -17,7 +17,18 @@ body{
   background-color: rgb(255, 255, 255, 0.9);
   border-radius: 12px;
   padding: 40px;
-  margin-top:20px;
+  margin-top:70px;
+}
+
+.explainer{
+  background-color: rgb(255, 255, 255, 0.9);
+  border-radius: 12px;
+  padding: 40px;
+  margin: 20px;
+
+  width: 50%;
+  margin-left: 50%;
+  transform: translate(-50%, 0);
 }
 
 a, a:visited{
@@ -129,6 +140,7 @@ h2{
 
 .close_room img{
   width: 40px;
+  margin-bottom: -5px;
 }
 
 .avatar{

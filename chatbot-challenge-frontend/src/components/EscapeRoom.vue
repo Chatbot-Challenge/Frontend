@@ -18,12 +18,16 @@ export default {
     let d = {
       "messagebox_caption": "Type here what you want to do...",
       "send_button_caption": "Do",
+      "explainer": ""
     }
     if (this.room["messagebox_caption"] != undefined) {
       d["messagebox_caption"] = this.room["messagebox_caption"];
     }
     if (this.room["send_button_caption"] != undefined) {
       d["send_button_caption"] = this.room["send_button_caption"];
+    }
+    if (this.room["explainer"] != undefined) {
+      d["explainer"] = this.room["explainer"];
     }
     d["is_escape_room"] = true;
     return d;
@@ -152,6 +156,7 @@ export default {
     // send a message to the chat server
     sendMessage() {
       let message = $(".messagebox").val();
+      $(".messagebox").val("");
 
       if (message.trim() == "") {
         return;
@@ -185,7 +190,7 @@ export default {
 
     $(document).ready(function () {
 
-      // display welcome message
+      document.getElementById("explainer").innerHTML = that.room["explanation_text"];
       that.displayMessage(that.room["welcome-message"], "bot");
       
       // that.displayMessage("Climate change is a lie!", "bot");
@@ -219,6 +224,7 @@ export default {
         <img src="/public/close.png" alt="x" />
       </a>
     </div>
+    <div class="explainer" id="explainer"></div>
   </div>
   <div class="separator"></div>
   <div class="input_area row footer">
