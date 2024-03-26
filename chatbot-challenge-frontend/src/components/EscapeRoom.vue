@@ -63,7 +63,7 @@ export default {
 
     async chat_request(messages) {
       // from here https://blog.pamelafox.org/2023/08/fetching-json-over-streaming-http.html
-      let url = this.room["api_url"] + "/api/chat";
+      let url = this.room["api_url"];
 
       const response = await fetch(url, {
         method: "POST",

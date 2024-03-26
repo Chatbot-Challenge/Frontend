@@ -3,6 +3,7 @@ let config;
 let default_llm_parameter = {
     "max_new_tokens": 100
 }
+
 config = {
     "rooms": [
         {
@@ -13,7 +14,7 @@ config = {
             "user_name": "You",
             "id": "climate-change-denier",
             "background-image": "iceberg.jpg",
-            "api_url": "http://localhost:5000",
+            "api_url": "/api/climate-change-denier/api/chat",
             "welcome-message": "Climate change is a lie!",
             "llm_parameters": default_llm_parameter,
             "explanation_text": "Setting: This chatbot denies climate change. If you tell the chatbot that there is scientific evicence for climate change the mood will get angry."
@@ -26,7 +27,7 @@ config = {
             "user_name": "You",
             "id": "i-dont-like-turbans",
             "background-image": "village_pub.png",
-            "api_url": "http://localhost:5000",
+            "api_url": "http://localhost:5000/api/chat",
             "welcome-message": "They should take off their turbans when they come here! And then stop living lazily on our benefits and groping our wives!",
             "llm_parameters": default_llm_parameter,
             "explanation_text": "Setting: ...."
