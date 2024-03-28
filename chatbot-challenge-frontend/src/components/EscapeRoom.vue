@@ -1,5 +1,4 @@
 <script>
-import { config } from '../../config'
 import { v4 as uuidv4 } from 'uuid';
 
 // show a single message
@@ -7,32 +6,90 @@ var isLoadingChatMessage = false;
 
 export default {
 
-  data() {
-    this.room = null;
-    for (var i = 0; i < config.rooms.length; i++) {
-      if (config.rooms[i]["id"] == this.$route.params.roomId) {
-        this.room = config.rooms[i];
-      }
-    }
+  // async data() {
+  //   this.room = null;
 
-    let d = {
-      "messagebox_caption": "Type here what you want to do...",
-      "send_button_caption": "Do",
-      "explainer": ""
-    }
-    if (this.room["messagebox_caption"] != undefined) {
-      d["messagebox_caption"] = this.room["messagebox_caption"];
-    }
-    if (this.room["send_button_caption"] != undefined) {
-      d["send_button_caption"] = this.room["send_button_caption"];
-    }
-    if (this.room["explainer"] != undefined) {
-      d["explainer"] = this.room["explainer"];
-    }
-    d["is_escape_room"] = true;
-    return d;
-  },
+  //   let config = null;
+  //   await fetch("/user-assets/config.json")
+  //     .then((response) => response.json())
+  //     .then((json) => config = json);
+  //   console.log("data");
+
+  //   for (var i = 0; i < config.rooms.length; i++) {
+  //     if (config.rooms[i]["id"] == this.$route.params.roomId) {
+  //       this.room = config.rooms[i];
+  //     }
+  //   }
+
+  //   let d = {
+  //     "messagebox_caption": "Type here what you want to do...",
+  //     "send_button_caption": "Do",
+  //     "explainer": ""
+  //   }
+  //   if (this.room["messagebox_caption"] != undefined) {
+  //     d["messagebox_caption"] = this.room["messagebox_caption"];
+  //   }
+  //   if (this.room["send_button_caption"] != undefined) {
+  //     d["send_button_caption"] = this.room["send_button_caption"];
+  //   }
+  //   if (this.room["explainer"] != undefined) {
+  //     d["explainer"] = this.room["explainer"];
+  //   }
+  //   d["is_escape_room"] = true;
+  //   return d;
+  // },
   methods: {
+
+    async init(){
+      let that = this;
+      this.room = null;
+
+      let config = null;
+      await fetch("/user-assets/config.json")
+        .then((response) => response.json())
+        .then((json) => config = json);
+
+      for (var i = 0; i < config.rooms.length; i++) {
+        if (config.rooms[i]["id"] == this.$route.params.roomId) {
+          this.room = config.rooms[i];
+        }
+      }
+      
+      let defaults = {
+        "messagebox_caption": "Say something...",
+        "send_button_caption": "Say",
+        "explainer": ""
+      }
+      for (const [key, value] of Object.entries(defaults)) {
+        if( this.room[key] == undefined){
+          this.room[key] = value;
+        }
+      }
+
+      document.getElementById("explainer").innerHTML = that.room["explanation_text"];
+      that.displayMessage(that.room["welcome-message"], "bot");
+
+      document.getElementById("input_text").setAttribute("placeholder", this.room["messagebox_caption"]);
+      document.getElementById("send_button").value = this.room["send_button_caption"];
+
+      // that.displayMessage("Climate change is a lie!", "bot");
+      // that.displayMessage("Climate change is proven scientific evidence.", "user");
+      // let messages = that.collect_messages();
+      // that.chat_request(messages);            
+
+      // listen to enter key on message input field
+      $('.messagebox').keypress(function (e) {
+        if (e.keyCode == 13) {
+          that.sendMessage();
+        }
+      });
+
+      // send button click function
+      $(".send_button").click(function (e) {
+        e.preventDefault();
+        that.sendMessage();
+      });
+    },
 
     // parse previous conversation
     collect_request_data() {
@@ -41,8 +98,8 @@ export default {
       [].forEach.call(elements, function (element) {
 
         var name_elem = element.getElementsByClassName("name")[0];
-        var sender = name_elem.innerHTML.trim(); 
-        if( sender == "You" ) sender = "User"
+        var sender = name_elem.innerHTML.trim();
+        if (sender == "You") sender = "User"
         // sender = element.getElementsByClassName("name")[0].innerHTML.trim();
         var msg = element.getElementsByClassName("message")[0].innerHTML.trim();
         messages.push({
@@ -112,12 +169,12 @@ export default {
         .addClass("chat_bubble")
         .addClass(sender)
         .appendTo($(".chat"));
-      
+
       $("<div>")
         .addClass("message")
         .html(msg)
         .prependTo(div);
-      
+
       let name = "";
       if (sender == "user") {
         if (this.room["user_name"] != undefined) {
@@ -169,13 +226,14 @@ export default {
       let url = this.room["api_url"] + "/api/chat";
 
       this.displayMessage(message, "user");
-      
+
       let messages = this.collect_request_data()
       this.chat_request(messages);
     },
   },
 
   created() {
+    console.log("created");
     this.session_id = uuidv4();
 
     if (this.room != null) {
@@ -187,30 +245,8 @@ export default {
     }
 
     let that = this;
-
+    this.init();
     $(document).ready(function () {
-
-      document.getElementById("explainer").innerHTML = that.room["explanation_text"];
-      that.displayMessage(that.room["welcome-message"], "bot");
-      
-      // that.displayMessage("Climate change is a lie!", "bot");
-      // that.displayMessage("Climate change is proven scientific evidence.", "user");
-      // let messages = that.collect_messages();
-      // that.chat_request(messages);            
-
-      // listen to enter key on message input field
-      $('.messagebox').keypress(function (e) {
-        if (e.keyCode == 13) {
-          that.sendMessage();
-        }
-      });
-
-      // send button click function
-      $(".send_button").click(function (e) {
-        e.preventDefault();
-        that.sendMessage();
-      });
-
       $(".header").hide();
     });
   }
@@ -229,8 +265,8 @@ export default {
   <div class="separator"></div>
   <div class="input_area row footer">
 
-    <input type="text" class="messagebox" :placeholder="messagebox_caption" />
-    <input type="button" :value="send_button_caption" class="send_button" />
+    <input type="text" class="messagebox"  id="input_text" />
+    <input type="button"  class="send_button" id="send_button" />
   </div>
 
 </template>
