@@ -6,38 +6,6 @@ var isLoadingChatMessage = false;
 
 export default {
 
-  // async data() {
-  //   this.room = null;
-
-  //   let config = null;
-  //   await fetch("/user-assets/config.json")
-  //     .then((response) => response.json())
-  //     .then((json) => config = json);
-  //   console.log("data");
-
-  //   for (var i = 0; i < config.rooms.length; i++) {
-  //     if (config.rooms[i]["id"] == this.$route.params.roomId) {
-  //       this.room = config.rooms[i];
-  //     }
-  //   }
-
-  //   let d = {
-  //     "messagebox_caption": "Type here what you want to do...",
-  //     "send_button_caption": "Do",
-  //     "explainer": ""
-  //   }
-  //   if (this.room["messagebox_caption"] != undefined) {
-  //     d["messagebox_caption"] = this.room["messagebox_caption"];
-  //   }
-  //   if (this.room["send_button_caption"] != undefined) {
-  //     d["send_button_caption"] = this.room["send_button_caption"];
-  //   }
-  //   if (this.room["explainer"] != undefined) {
-  //     d["explainer"] = this.room["explainer"];
-  //   }
-  //   d["is_escape_room"] = true;
-  //   return d;
-  // },
   methods: {
 
     async init(){
@@ -233,7 +201,6 @@ export default {
   },
 
   created() {
-    console.log("created");
     this.session_id = uuidv4();
 
     if (this.room != null) {
@@ -248,7 +215,8 @@ export default {
     this.init();
     $(document).ready(function () {
       $(".header").hide();
-    });
+      document.getElementById("input_text").focus();
+  });
   }
 };
 </script>
