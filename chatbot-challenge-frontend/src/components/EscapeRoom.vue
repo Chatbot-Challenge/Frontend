@@ -8,7 +8,7 @@ export default {
 
   methods: {
 
-    async init(){
+    async init() {
       let that = this;
       this.room = null;
 
@@ -22,14 +22,14 @@ export default {
           this.room = config.rooms[i];
         }
       }
-      
+
       let defaults = {
         "messagebox_caption": "Say something...",
         "send_button_caption": "Say",
         "explainer": ""
       }
       for (const [key, value] of Object.entries(defaults)) {
-        if( this.room[key] == undefined){
+        if (this.room[key] == undefined) {
           this.room[key] = value;
         }
       }
@@ -97,6 +97,12 @@ export default {
           "Content-type": "application/json; charset=UTF-8"
         }
       });
+
+      if (!response.ok) {
+        alert("Cannot connect to server");
+        return;
+      }
+
       const readableStream = response.body;
       const reader = readableStream.getReader();
       var runningText = "";
@@ -216,7 +222,7 @@ export default {
     $(document).ready(function () {
       $(".header").hide();
       document.getElementById("input_text").focus();
-  });
+    });
   }
 };
 </script>
@@ -233,8 +239,8 @@ export default {
   <div class="separator"></div>
   <div class="input_area row footer">
 
-    <input type="text" class="messagebox"  id="input_text" />
-    <input type="button"  class="send_button" id="send_button" />
+    <input type="text" class="messagebox" id="input_text" />
+    <input type="button" class="send_button" id="send_button" />
   </div>
 
 </template>
