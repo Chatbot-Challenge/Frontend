@@ -9,17 +9,17 @@ import ListRooms from './components/ListRooms.vue'
   </div>
   <div class="wrapper" v-else>
     <div class="content-box">
-        <h1>Chatbots zur Stärkung der Demokratie</h1>
+        <h1>Chatbots to Strengthen Democracy</h1>
         
         <ul class="nav">
           <li>
             <RouterLink to="/">Chatbots</RouterLink>
           </li>
           <li>
-            <RouterLink to="/about">&Uuml;ber uns</RouterLink>
+            <RouterLink to="/about">About us</RouterLink>
           </li>
           <li>
-            <RouterLink to="/imprint_Data">Impressum und Datenschutzerkl&auml;rung</RouterLink>
+            <RouterLink to="/imprint_Data">Imprint and data privacy statement</RouterLink>
           </li>
         </ul>
         <p>&nbsp;</p>
