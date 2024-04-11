@@ -13,7 +13,7 @@ export default {
       this.room = null;
 
       let config = null;
-      await fetch("/user-assets/config.json")
+      await fetch("/user-assets/config.json?r=" + Math.random())
         .then((response) => response.json())
         .then((json) => config = json);
 

@@ -12,7 +12,7 @@ function listRooms(rooms){
   }
 }
 
-fetch("/user-assets/config.json")
+fetch("/user-assets/config.json?r=" + Math.random())
   .then((response) => response.json())
   .then((json) => listRooms(json));
 
