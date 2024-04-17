@@ -136,6 +136,7 @@ h2{
   top: 20px;
   right: 20px;
   opacity:0.5;
+  z-index: 4;
 }
 
 .close_room img{
@@ -157,4 +158,101 @@ h2{
 .avatar-right{
   float: right;
   margin-left: 10px;
+}
+
+#success_dialog_overlay{
+  display: none;
+  position: fixed; /* Sit on top of the page content */
+  /*display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255,255,255,0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+}
+
+.success_dialog{
+  display: none;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(255, 255, 255, 0.9);
+  padding: 50px;
+  z-index: 4;
+  border-radius:12px;
+}
+
+.success_dialog a{
+  padding: 20px;
+  background-color: white;
+  border-radius: 12px;
+  border: 1px solid black;
+  margin: 20px;
+  display: inline-block;
+}
+
+
+#balloon-container {
+  display: none;
+  position: fixed; /* Sit on top of the page content */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1em;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  overflow: hidden;
+  transition: opacity 500ms;
+  z-index: 4;
+}
+
+.balloon {
+  height: 125px;
+  width: 105px;
+  border-radius: 75% 75% 70% 70%;
+  position: relative;
+  z-index: 4;
+}
+
+.balloon:before {
+  content: "";
+  height: 75px;
+  width: 1px;
+  padding: 1px;
+  background-color: #FDFD96;
+  display: block;
+  position: absolute;
+  top: 125px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 4;
+}
+
+.balloon:after {
+    content: "▲";
+    text-align: center;
+    display: block;
+    position: absolute;
+    color: inherit;
+    top: 120px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 4;
+  }
+
+@keyframes float {
+  from {transform: translateY(100vh);
+  opacity: 1;}
+  to {transform: translateY(-300vh);
+  opacity: 0;}
 }

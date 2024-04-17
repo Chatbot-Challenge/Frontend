@@ -40,6 +40,23 @@ export default {
       document.getElementById("input_text").setAttribute("placeholder", this.room["messagebox_caption"]);
       document.getElementById("send_button").value = this.room["send_button_caption"];
 
+      // initialize success dialog
+      document.getElementById("success_dialog_text").innerHTML = that.room["success-message"];
+
+      document.getElementById("success_continue").addEventListener("click", (event) => {
+        that.hideSuccess();
+        event.preventDefault();
+      });
+      document.getElementById("success_leave").addEventListener("click", (event) => {
+        document.location.href = "/";
+        event.preventDefault();
+      });
+      document.getElementById("success_restart").addEventListener("click", (event) => {
+        document.location.reload();
+        event.preventDefault();
+      });
+
+      // example code how to add some messages on startup      
       // that.displayMessage("Climate change is a lie!", "bot");
       // that.displayMessage("Climate change is proven scientific evidence.", "user");
       // let messages = that.collect_messages();
@@ -113,25 +130,47 @@ export default {
       output = output.getElementsByClassName("message")[0];
       //messages_div = document.getElementById("messages");
 
+      let header = null;
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
         var text = new TextDecoder("utf-8").decode(value);
         const objects = text.split("\n");
         for (const obj of objects) {
-          var s = obj.substring(5);
+
           try {
-            let result = JSON.parse(s);
-            runningText += result["token"]["text"];
-            output.innerHTML = runningText;
-            window.scrollTo(0, document.body.scrollHeight);
-            // messages_div.scrollTo(0, messages_div.scrollHeight);
+            if (header == null) {
+              header = JSON.parse(obj.substring(7));
+            } else {
+              var s = obj.substring(5);
+              let result = JSON.parse(s);
+              runningText += result["token"]["text"];
+              output.innerHTML = runningText;
+              window.scrollTo(0, document.body.scrollHeight);
+            }
           } catch (e) {
             // Not a valid JSON object
           }
         }
       }
+      console.log(header);
+      if (header["dialog_success"]) {
+        this.displaySuccess();
+      }
       isLoadingChatMessage = false;
+    },
+
+    displaySuccess() {
+      this.createBalloons(30);
+      document.getElementById("success_dialog").style.display = "block";
+      document.getElementById("success_dialog_overlay").style.display = "block";
+      document.getElementById("balloon-container").style.display = "flex";
+    },
+
+    hideSuccess(){
+      document.getElementById("success_dialog").style.display = "none";
+      document.getElementById("success_dialog_overlay").style.display = "none";
+      document.getElementById("balloon-container").style.display = "none";
     },
 
     displayMessage(msg, sender) {
@@ -204,6 +243,45 @@ export default {
       let messages = this.collect_request_data()
       this.chat_request(messages);
     },
+
+    // balloon code from https://codepen.io/Jemimaabu/pen/vYEYdOy
+    getRandomStyles: function () {
+      function random(num) {
+        return Math.floor(Math.random() * num);
+      };
+      var r = random(255);
+      var g = random(255);
+      var b = random(255);
+      var mt = random(200);
+      var ml = random(50);
+      var dur = random(5) + 5;
+      return `
+    background-color: rgba(${r},${g},${b},0.7);
+    color: rgba(${r},${g},${b},0.7); 
+    box-shadow: inset -7px -3px 10px rgba(${r - 10},${g - 10},${b - 10},0.7);
+    margin: ${mt}px 0 0 ${ml}px;
+    animation: float ${dur}s ease-in infinite
+    `;
+    },
+
+    createBalloons: function (num) {
+      const balloonContainer = document.getElementById("balloon-container");
+      for (var i = num; i > 0; i--) {
+        var balloon = document.createElement("div");
+        balloon.className = "balloon";
+        balloon.style.cssText = this.getRandomStyles();
+        balloonContainer.append(balloon);
+      }
+    },
+
+    removeBalloons: function () {
+      const balloonContainer = document.getElementById("balloon-container");
+      balloonContainer.style.opacity = 0;
+      setTimeout(() => {
+        balloonContainer.remove()
+      }, 500)
+    }
+
   },
 
   created() {
@@ -223,7 +301,7 @@ export default {
       $(".header").hide();
       document.getElementById("input_text").focus();
     });
-  }
+  },
 };
 </script>
 
@@ -241,6 +319,17 @@ export default {
 
     <input type="text" class="messagebox" id="input_text" />
     <input type="button" class="send_button" id="send_button" />
+  </div>
+
+  <div id="success_dialog_overlay"></div>
+  <div id="balloon-container"></div>
+  <div class="success_dialog" id="success_dialog">
+    <div id="success_dialog_text"></div>
+    <div class="buttons">
+      <a href="#" id="success_continue">Continue chatting</a>
+      <a href="#" id="success_leave">Leave dialog</a>
+      <a href="#" id="success_restart">Restart dialog</a>
+    </div>
   </div>
 
 </template>
