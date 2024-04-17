@@ -153,8 +153,8 @@ export default {
           }
         }
       }
-      console.log(header);
-      if (header["dialog_success"]) {
+
+      if (header != null and header["dialog_success"]) {
         this.displaySuccess();
       }
       isLoadingChatMessage = false;
