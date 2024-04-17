@@ -139,7 +139,8 @@ export default {
         for (const obj of objects) {
 
           try {
-            if (header == null) {
+            if (header == null && obj.substring(0,4) == "data") {
+              header = -1;
               header = JSON.parse(obj.substring(7));
             } else {
               var s = obj.substring(5);
@@ -154,7 +155,7 @@ export default {
         }
       }
 
-      if (header != null and header["dialog_success"]) {
+      if (header != null && header != -1 && header["dialog_success"]) {
         this.displaySuccess();
       }
       isLoadingChatMessage = false;
