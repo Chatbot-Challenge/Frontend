@@ -55,6 +55,7 @@ export default {
         document.location.reload();
         event.preventDefault();
       });
+      this.dialogSucccesful = false;
 
       // example code how to add some messages on startup      
       // that.displayMessage("Climate change is a lie!", "bot");
@@ -139,7 +140,7 @@ export default {
         for (const obj of objects) {
 
           try {
-            if (header == null && obj.substring(0,4) == "data") {
+            if (header == null && obj.substring(0,6) == "header") {
               header = -1;
               header = JSON.parse(obj.substring(7));
             } else {
@@ -154,7 +155,7 @@ export default {
           }
         }
       }
-
+      console.log(header);
       if (header != null && header != -1 && header["dialog_success"]) {
         this.displaySuccess();
       }
@@ -162,6 +163,10 @@ export default {
     },
 
     displaySuccess() {
+      if( this.dialogSucccesful ){
+        return;
+      }
+      this.dialogSucccesful = true;
       this.createBalloons(30);
       document.getElementById("success_dialog").style.display = "block";
       document.getElementById("success_dialog_overlay").style.display = "block";

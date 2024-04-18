@@ -14,7 +14,7 @@
             "llm_parameters": {
                 "max_new_tokens": 100
             },
-            "explanation_text": "Setting: This chatbot denies climate change. If you tell the chatbot that there is scientific evicence for climate change the mood will get angry."
+            "explanation_text": "Setting: This chatbot denies climate change. If you tell the chatbot that there is scientific evicence for climate change the mood will get angry and the dialog is succesful."
         }
     ]
 }
