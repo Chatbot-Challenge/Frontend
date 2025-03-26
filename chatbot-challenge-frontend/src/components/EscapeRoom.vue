@@ -9,19 +9,6 @@ export default {
   methods: {
 
     async init() {
-      let that = this;
-      this.room = null;
-
-      let config = null;
-      await fetch("/user-assets/config.json?r=" + Math.random())
-        .then((response) => response.json())
-        .then((json) => config = json);
-
-      for (var i = 0; i < config.rooms.length; i++) {
-        if (config.rooms[i]["id"] == this.$route.params.roomId) {
-          this.room = config.rooms[i];
-        }
-      }
 
       let defaults = {
         "messagebox_caption": "Say something...",
@@ -33,7 +20,7 @@ export default {
           this.room[key] = value;
         }
       }
-
+      let that = this;
       document.getElementById("explainer").innerHTML = that.room["explanation_text"];
       that.displayMessage(that.room["welcome-message"], "bot");
 
@@ -75,6 +62,13 @@ export default {
         e.preventDefault();
         that.sendMessage();
       });
+
+      // background image
+      if (this.room["background-image"] != undefined) {
+        let path = this.room["bot_base_url"] +  this.room["background-image"];
+        $("body").css("background-image","url(" + path + ")");
+        console.log(path);
+      }
     },
 
     // parse previous conversation
@@ -160,7 +154,6 @@ export default {
           }
         }
       }
-      console.log(header);
       if (header != null && header != -1 && header["dialog_success"]) {
         this.displaySuccess();
       }
@@ -291,23 +284,46 @@ export default {
       setTimeout(() => {
         balloonContainer.remove()
       }, 500)
-    }
+    },
 
+    async load_config(){
+    let that = this;
+      this.room = null;
+
+      let config = null;
+      await fetch("/user-assets/config.json?r=" + Math.random())
+        .then((response) => response.json())
+        .then((json) => config = json);
+
+      for (var i = 0; i < config.rooms.length; i++) {
+        if (config.rooms[i]["id"] == this.$route.params.roomId) {
+          this.room = config.rooms[i];
+        }
+      }
+
+      if( this.room["bot_base_url"] == undefined ){
+        // this is a local config, init frontend right away
+        this.init();
+      } else{
+        // fetch remote config and then load frontend
+        let url = this.room["bot_base_url"] + "/static/config.json?r=" + Math.random();
+        fetch(url)
+          .then((response) => response.json())
+          .then((json) => {
+            for (const [key, value] of Object.entries(json)) {
+              this.room[key] = value;
+            }
+            this.room["api_url"] = this.room["bot_base_url"] + "/api/chat"
+            this.init();
+          });
+      }
+  },
   },
 
   created() {
     this.session_id = uuidv4();
 
-    if (this.room != null) {
-      if (this.room["background-image"] != undefined) {
-        //let path = require("/public/background-images/" + this.room["background-image"]);
-        let path = "url(/user-assets/" + this.room["background-image"] + ")";
-        $("body").css("background-image", path);
-      }
-    }
-
-    let that = this;
-    this.init();
+    this.load_config();
     $(document).ready(function () {
       $(".header").hide();
       document.getElementById("input_text").focus();
