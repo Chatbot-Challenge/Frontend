@@ -22,23 +22,25 @@ function listRooms(rooms){
     }
   }
 
-  Promise.all(urls)
-    .then((responses) => Promise.all(responses.map((r) => r.json())))
-    .then((jsons) => {
-      var responseIndex = 0;
-      for( var i=0; i<rooms["rooms"].length; i++ ){
-        if( rooms["rooms"][i]["bot_base_url"] != undefined ){
-          for (const [key, value] of Object.entries(jsons[responseIndex])) {
-            rooms["rooms"][i][key] = value;
+  if(urls.length > 0){
+    // config with at least one remote config
+    Promise.all(urls)
+      .then((responses) => Promise.all(responses.map((r) => r.json())))
+      .then((jsons) => {
+        var responseIndex = 0;
+        for( var i=0; i<rooms["rooms"].length; i++ ){
+          if( rooms["rooms"][i]["bot_base_url"] != undefined ){
+            for (const [key, value] of Object.entries(jsons[responseIndex])) {
+              rooms["rooms"][i][key] = value;
+            }
+            responseIndex += 1;
           }
-          responseIndex += 1;
         }
-      }
-      buildHTML(rooms);
-    })
-    .catch((error) => console.error("An error occurred:", error));
-
-    if(urls.length == 0){
+        buildHTML(rooms);
+      })
+      .catch((error) => console.error("An error occurred:", error));
+    } else{
+      // purely local config
       buildHTML(rooms);
     }
 }
