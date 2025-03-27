@@ -46,7 +46,7 @@ export default {
 
       // example code how to add some messages on startup      
       // that.displayMessage("Climate change is a lie!", "bot");
-      // that.displayMessage("Climate change is proven scientific evidence.", "user");
+      that.displayMessage("Climate change is proven scientific evidence.", "user");
       // let messages = that.collect_messages();
       // that.chat_request(messages);            
 
@@ -65,7 +65,11 @@ export default {
 
       // background image
       if (this.room["background-image"] != undefined) {
-        let path = this.room["bot_base_url"] +  this.room["background-image"];
+        let baseurl = "";
+          if( this.room["bot_base_url"] != undefined ){
+            baseurl = this.room["bot_base_url"];
+          }
+        let path = baseurl +  this.room["background-image"];
         $("body").css("background-image","url(" + path + ")");
         console.log(path);
       }
@@ -187,10 +191,39 @@ export default {
         .addClass(sender)
         .appendTo($(".chat"));
 
-      $("<div>")
+        if (sender == "bot" & this.room["chatbot-avatar"] != undefined) {
+          let baseurl = "";
+          if( this.room["bot_base_url"] != undefined ){
+            baseurl = this.room["bot_base_url"];
+          }
+          let url = baseurl +  this.room["chatbot-avatar"];
+          let img = $("<img/>")
+            .attr("src", url)
+            .addClass("avatar")
+            .addClass("avatar-left")
+            .appendTo(div)
+        }
+        if (sender == "user" & this.room["user-avatar"] != undefined) {
+          let baseurl = "";
+          if( this.room["bot_base_url"] != undefined ){
+            baseurl = this.room["bot_base_url"];
+          }
+          let url = baseurl +  this.room["user-avatar"];
+
+          let img = $("<img/>")
+            .attr("src", url)
+            .addClass("avatar")
+            .addClass("avatar-right")
+            .appendTo(div)
+        }
+
+        $("<br/>")
+        .appendTo(div);
+
+        $("<span>")
         .addClass("message")
         .html(msg)
-        .prependTo(div);
+        .appendTo(div);
 
       let name = "";
       if (sender == "user") {
@@ -199,28 +232,14 @@ export default {
         } else {
           name = "You";
         }
-        if (this.room["user-avatar"] != undefined) {
-          let img = $("<img/>")
-            .attr("src", "/user-assets/" + this.room["user-avatar"])
-            .addClass("avatar")
-            .addClass("avatar-right")
-            .appendTo(div)
-        }
       } else {
         if (this.room["chatbot_name"] != undefined) {
           name = this.room["chatbot_name"];
         } else {
           name = "Game Master";
         }
-        if (this.room["chatbot-avatar"] != undefined) {
-          let img = $("<img/>")
-            .attr("src", "/user-assets/" + this.room["chatbot-avatar"])
-            .addClass("avatar")
-            .addClass("avatar-left")
-            .appendTo(div)
-        }
       }
-      $("<div>")
+      $("<span>")
         .addClass("name")
         .html(name)
         .prependTo(div);
