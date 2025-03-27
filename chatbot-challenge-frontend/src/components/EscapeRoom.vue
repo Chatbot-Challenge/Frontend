@@ -46,7 +46,7 @@ export default {
 
       // example code how to add some messages on startup      
       // that.displayMessage("Climate change is a lie!", "bot");
-      that.displayMessage("Climate change is proven scientific evidence.", "user");
+      // that.displayMessage("Climate change is proven scientific evidence.", "user");
       // let messages = that.collect_messages();
       // that.chat_request(messages);            
 
